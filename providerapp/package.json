@@ -1,0 +1,30 @@
+{
+  "name": "ProviderApp",
+  "version": "1.0.0",
+  "description": "ProviderApplication",
+  "main": "server.js",
+  "dependencies": {    
+    "express": "*",
+	"xlsx-to-json": "*",
+	"xls-to-json": "*",
+	"path": "*",
+	"mongojs": "*",
+	"body-parser": "*",
+	"multer": "*",	
+	"fs": "*",	
+	"http": "*",	
+	"superwisor": "*",
+	"url": "*",
+	"json2xls":"*",
+	"generate-schema":"*",
+	"mongoose":"*",
+	"conform":"*"	
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "KJ",
+  "license": "ISC"
+}

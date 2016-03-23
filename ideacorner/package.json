@@ -1,0 +1,25 @@
+{
+  "name": "IdeaCorner",
+  "version": "1.0.0",
+  "description": "IdeaCorner",
+  "main": "server.js",
+  "dependencies": {    
+    "express": "*",
+	"express-ntlm": "*",
+	"path": "*",
+	"mongojs": "*",
+	"body-parser": "*",
+	"multer": "*",	
+	"fs": "*",	
+	"http": "*",	
+	"superwisor": "*",
+	"url": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "KJ",
+  "license": "ISC"
+}
