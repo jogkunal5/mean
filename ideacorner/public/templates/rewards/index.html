@@ -1,0 +1,105 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Rewards & Recognition</h2>
+                    <!--                    <ol class="breadcrumb">
+                                            <li>
+                                                <a href="index.html">
+                                                    <i class="ion-ios-home"></i>
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li class="active">Service</li>
+                                        </ol>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+<section id="contact-section">
+    <div class="container">
+        <div class="row address-details">
+            <div class="col-md-3">
+                <div data-wow-delay=".3s" data-wow-duration="500ms" class="email wow fadeInLeft animated" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <p>By Ratings</p>
+                    <select class="sort-dropdowns" ng-model="by_ratings" ng-change="getByData()" name="by_ratings">
+                        <option value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div data-wow-delay=".3s" data-wow-duration="500ms" class="email wow fadeInLeft animated" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                    <i class="glyphicon glyphicon-ok-sign"></i>
+                    <p>By Status</p>
+                    <select class="sort-dropdowns" ng-model="by_status" ng-change="getByData()">
+                        <option value="">Select</option>
+                        <option value="Submitted">Submitted</option>
+                        <option value="Move To Next Stage">Move To Next Stage</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Returned">Returned</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div data-wow-delay=".3s" data-wow-duration="500ms" class="email wow fadeInLeft animated" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                    <i class="glyphicon glyphicon-user"></i>
+                    <p>By Reviewer</p>
+                    <select class="sort-dropdowns" ng-model="by_reviewer" ng-change="getByData()">
+                        <option value="">Select</option>
+                        <option ng-repeat="data in users" value="{{data.dtid}}">{{data.username|uppercase}}</option>                        
+                    </select>
+                </div>
+            </div>            
+            <div class="col-md-3">
+                <div data-wow-delay=".3s" data-wow-duration="500ms" class="email wow fadeInLeft animated" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                    <i class="glyphicon glyphicon-picture"></i>
+                    <p>By Theme</p>
+                    <select class="sort-dropdowns" ng-model="by_theme" ng-change="getByData()">
+                        <option value="">Select</option>
+                        <option ng-repeat="data in theme_names" value="{{data.theme_name}}">{{data.theme_name}}</option>                        
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Details
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>DT ID</th>
+                            <th>Team</th>
+                            <th>Title</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in list">
+                            <td>{{row.dt_id}}</td>
+                            <td>{{row.team}}</td>
+                            <td>{{row.title}}</td>
+                            <td>{{row.comments}}</td>
+                        </tr>
+                    </tbody>
+                    <tfooter></tfooter>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

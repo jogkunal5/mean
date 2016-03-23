@@ -1,0 +1,92 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Themes</h2>
+                    <!--                    <ol class="breadcrumb">
+                                            <li>
+                                                <a href="index.html">
+                                                    <i class="ion-ios-home"></i>
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li class="active">Service</li>
+                                        </ol>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+
+<section id="contact-section" ng-controller="ThemesController">
+    <div class="container">
+
+        <div class="alert alert-info">
+            <p>Selected Theme: <b>{{currentThemeName| uppercase}}</b></p>            
+            <p>Selected Quarter: <b>{{currentThemeQuarter| uppercase}} from {{from}} - {{to}}</b></p>            
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Add Themes Quarter-wise</div>
+            <div class="panel-body">
+
+                <form name="themeForm" ng-submit="addTheme()">
+                    <div class="form-group">
+                        <label for="name">Theme</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter Theme" ng-model="theme.theme_name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Quarter</label>
+                        <select ng-model="theme.theme_quarter" class="form-control">
+                            <option value="">Select</option>
+                            <option value="Jan-Mar">Jan-Mar</option>
+                            <option value="Apr-Jun">Apr-Jun</option>
+                            <option value="Jul-Sept">Jul-Sept</option>
+                            <option value="Oct-Dec">Oct-Dec</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="daterange">Quarter From</label>
+                        <input type="text" id="from" name="from" ng-model="theme.from" class="form-control">                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="daterange">Quarter To</label>
+                        <input type="text" id="to" name="to" ng-model="theme.to"  class="form-control">
+                    </div>
+                                        
+
+                    <div class="well well-lg text-center bg-gray">
+                        <button class="btn btn-success">Submit</button>
+                        &nbsp;
+                        <button class="btn btn-info" ng-click="deselect()">Clear</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+            $(function () {
+                $("#from").datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    onClose: function (selectedDate) {
+                        $("#to").datepicker("option", "minDate", selectedDate);
+                    }
+                });
+                $("#to").datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    onClose: function (selectedDate) {
+                        $("#from").datepicker("option", "maxDate", selectedDate);
+                    }
+                });
+            });
+</script>

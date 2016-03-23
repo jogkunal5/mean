@@ -1,0 +1,82 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Home</h2>
+                    <!--                                        <ol class="breadcrumb">
+                                                                <li>
+                                                                    <a href="index.html">
+                                                                        <i class="ion-ios-home"></i>
+                                                                        Home
+                                                                    </a>
+                                                                </li>
+                                                                <li class="active">Service</li>
+                                                            </ol>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+<section id="hero-area" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="block wow fadeInUp" data-wow-delay=".3s">
+
+                    <img src="images/idea.png" alt="">
+
+                    <!-- Slider -->
+                    <section class="cd-intro">
+                        <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >                            
+                            <span class="cd-words-wrapper">
+                                <b class="is-visible">IDEA CORNER</b>                                    
+                            </span>
+                        </h1>
+                    </section> <!-- cd-intro -->
+                    <!-- /.slider -->
+                    <h2 class="wow fadeInUp animated" data-wow-delay=".6s" >
+                        The term MEAN stack refers to a collection of JavaScript based technologies used to develop web applications. MEAN is an acronym for MongoDB, ExpressJS, AngularJS and Node.js. From client to server to database, MEAN is full stack JavaScript
+                    </h2>
+                    <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#/users" data-section="#works" >
+                        Post New Idea
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="works" class="works">
+    <div class="container">
+        <div class="section-heading">
+            <h1 class="title wow fadeInDown animated" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
+                Status
+            </h1>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <tr ng-repeat="contact in rowCollection|orderBy:-1">
+                        <td>{{contact.title}}</td>
+                        <td>{{contact.description}}</td>                                                                    
+                        <td>{{contact.status}}</td>
+                        <td>{{contact.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

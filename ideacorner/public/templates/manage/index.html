@@ -1,0 +1,226 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Manage Ideas</h2>
+                    <!--                    <ol class="breadcrumb">
+                                            <li>
+                                                <a href="index.html">
+                                                    <i class="ion-ios-home"></i>
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li class="active">Service</li>
+                                        </ol>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+
+<style>
+    .gridtbl tr th a{
+        color: #337AB7;
+    }
+
+    .gridtbl {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        //height: 600px; /* this can vary */
+    }
+
+    .gridtbl * {
+        box-sizing: inherit;
+        -moz-box-sizing: inherit;
+    }
+
+    .gridtbl thead {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gridtbl tbody {
+        overflow-y: scroll;
+        display: inline-block;
+    }
+
+    .gridtbl thead > tr, tbody > tr, tfoot > tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .gridtbl thead, tfoot {
+        flex-shrink: 0;
+    }
+
+    .gridtbl th, tbody td {
+        width: 20%; /* this can vary */
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+
+    .gridtbl tfoot {
+        display: inline-block;
+    }
+
+    .gridtbl tfoot td {
+        width: 100%;
+        display: inline-block;
+    }    
+</style>
+
+<section id="contact-section">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4 class="panel-title">Manage</h4></div>
+            <div class="well well-sm">
+                <input type="text" class="form-control" ng-model="contact.names" placeholder="Search...">
+            </div>
+
+            <table class="table table-striped gridtbl" st-table="displayedCollection" st-safe-src="rowCollection">
+
+                <thead>
+                    <tr>
+                        <th st-sort="title"><a href="javascript:void(0);">Idea <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <!--                        <th st-sort="description"><a href="javascript:void(0);">Description <i class="glyphicon glyphicon-sort"></i></a></th> -->
+                        <th st-sort="theme_name"><a href="javascript:void(0);">Theme <i class="glyphicon glyphicon-sort"></i></a></th> 
+                        <th st-sort="theme_quarter"><a href="javascript:void(0);">Quarter <i class="glyphicon glyphicon-sort"></i></a></th> 
+                        <th st-sort="team"><a href="javascript:void(0);">Team <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <!--                    <th>DTID</th> -->
+                        <th>
+                            <select st-search="status" style="width:90px;">
+                                <option value="">All</option>
+                                <option ng-repeat="row in displayedCollection| unique:'status'" value="{{row.status}}">{{row.status}}</option>
+                            </select>
+                        </th>
+                        <th>Attachment</th> 
+                        <th>Actions</th>                    
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="contact in displayedCollection| filter:contact.names|orderBy:-1">
+                        <td>{{contact.title}}</td>
+                        <!--                        <td>{{contact.description}}</td>                    -->
+                        <td>{{contact.theme_name}}</td>
+                        <td>{{contact.theme_quarter}}</td>
+                        <td>{{contact.team}}</td>
+                        <!--                    <td>{{contact.dt_id}}</td>-->
+                        <td>{{contact.status}}</td>
+                        <td>                            
+                            <div ng-if="contact.file">
+                                <button class="btn btn-sm btn-danger" ng-click="download(contact._id)" title="Download"><i class="glyphicon glyphicon-download-alt"></i></button>
+                            </div>
+                            <div ng-if="!contact.file">
+                                None
+                            </div>
+                        </td>
+                        <td>
+                            <button ng-click="toggleModal(contact._id)" class="btn btn-success" title="Review & Rate"><i class="glyphicon glyphicon-star-empty"></i></button>
+                        </td>                   
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="8" class="text-center">
+                            <div  st-items-by-page="15" st-pagination=""></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </tfoot>
+
+            </table>
+
+
+        </div>
+    </div>
+</section>
+
+<modal title="Review & Rate" visible="showModal" data-backdrop="static" data-keyboard="false">
+
+    <div class="alert alert-info">
+        <p><b>Theme:</b> {{ideacorner.theme_name}}</p>
+        <p><b>Quarter:</b> {{ideacorner.theme_quarter}} From: {{ideacorner.from}} to {{ideacorner.to}}</p>
+        <p><b>Posted on:</b> {{ideacorner.posted_on}}</p>
+    </div>
+
+    <div class="alert alert-warning">
+        <div class="form-group">
+            <label>Team</label>
+            <p>{{ideacorner.team}}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Subject</label>
+            <p>{{ideacorner.title}}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <p>
+                {{ideacorner.description}}
+            </p>
+        </div>
+
+        <div ng-if="ideacorner.file">
+            <div class='form-group'>            
+                <label>Attachment</label>                    
+                <p>
+                    <button class="btn btn-sm btn-danger" ng-click="download(contact._id)"><i class="glyphicon glyphicon-download-alt"></i></button>
+                </p>
+            </div>        
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" ng-model="ideacorner.status">
+                    <option value="Submitted">Submitted</option>
+                    <option value="Move To Next Stage">Move To Next Stage</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Returned">Returned</option>            
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Rate</label>                
+                <select class="form-control" ng-model="ideacorner.rate">
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>            
+                    <option value="5">5</option>            
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Comments & Suggestions</label>
+        <textarea rows="3" ng-model="ideacorner.comments" class="form-control"></textarea>
+    </div>
+
+    <div class="well well-lg text-center bg-gray">
+        <button class="btn btn-primary" ng-click="save(ideacorner._id)">Save</button>
+    </div>
+
+</modal>
+
+<style>
+    .modal-dialog{
+        width: 1000px;
+    }
+</style>
+

@@ -1,0 +1,57 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Post new idea</h2>
+                    <!--                    <ol class="breadcrumb">
+                                            <li>
+                                                <a href="index.html">
+                                                    <i class="ion-ios-home"></i>
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li class="active">Service</li>
+                                        </ol>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+<section id="contact-section">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{currentThemeName| uppercase}} - {{currentThemeQuarter| uppercase}} from {{from}} - {{to}}</div>
+            <div class="panel-body">
+                
+                <div class="form-group">
+                    <label for="name">Team (Use comma to add multiple DT Numbers)</label>
+                    <input type="text" class="form-control" id="title" ng-model="team">                    
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Subject</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="title">                    
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Description</label>
+                    <textarea ng-model="description" id='description' class='form-control' placeholder="Enter Description" rows="10"></textarea>
+                </div>
+
+                <div class='form-group'>                        
+                    <label>Attach File (.pdf only)</label>                        
+                    <input type="file" file-model="contact.file" id="myfile">
+                </div>
+
+                <div class="well well-lg text-center bg-gray">
+                    <button class="btn btn-success" ng-click="addIdea()">Submit</button>
+                    &nbsp;
+                    <button class="btn btn-info" ng-click="deselect()">Clear</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
