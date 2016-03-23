@@ -1,0 +1,75 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Providers</h2>
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+
+<section id="contact-section">
+    <div class="container">
+
+        <div class="flash-message" ng-if="flash">
+            <div class="{{'alert alert-' + flash.type}} alert-dismissible" role="alert" ng-bind="flash.message"></div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4 class="panel-title">Edit Provider's List</h4></div>
+            <div class="well well-sm">
+                <select class="form-control" ng-model="collection">
+                    <option value="">Select Document Name</option>
+                    <option ng-click="getCollectionData()" ng-repeat="(key, val) in collectionList" value="{{val.name}}">{{val.name| uppercase}}</option>
+                </select>
+            </div>
+            <div class="well well-sm">
+                <input type="text" class="form-control" ng-model="row.names" placeholder="Instant Search">
+            </div>
+
+
+            <table class="table table-bordered">
+                <tr>
+                    <th ng-repeat="(key, val) in providerList[0]" ng-if="!$first && $index <= 3">                
+                        {{key.replace("_", " ") | uppercase}}                
+                    </th>
+                </tr>
+
+                <tr ng-repeat="(key, row) in providerList | filter:row.names|orderBy:-1">                                                            
+                    <td ng-repeat="cell in row" ng-if="!$first && $index <= 3">
+                        {{cell}}
+                    </td>
+                    <td>                                    
+                        <!--                        <a class="btn btn-warning" ng-href="#/collectiondata/{{row._id}}/collectionName/{{collectionName}}">Edit</a>                        -->
+                        <button ng-click="toggleModal(row._id, collectionName)" class="btn btn-success">Edit</button>
+                    </td>                
+                </tr>       
+            </table>
+
+        </div>
+    </div>
+</section>
+
+<modal title="Edit Record" visible="showModal" data-backdrop="static" data-keyboard="false">
+
+    <div class="form-group" ng-repeat="(index,formVal) in providerModelData"  ng-if="!$first">                    
+        <label>{{index.replace("_", " ") | uppercase}}</label>
+        <input type="text" class="form-control" ng-model="providerModelData[index]">        
+    </div>
+
+    <input type="hidden" ng-model="colName">
+
+    <div class="well well-sm text-center bg-gray">                                    
+        <button class="btn btn-sm btn-primary" ng-click="save(colId)">Save</button>
+        <button class="btn btn-sm btn-success" ng-click="export(colId)">Save & Export to .xlsx</button>
+    </div>
+</modal>
+
+<style>
+    .modal-dialog{
+        width: 800px;
+    }
+</style>

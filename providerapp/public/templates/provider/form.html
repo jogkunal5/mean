@@ -1,0 +1,46 @@
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Export Provider</h2>
+                    <!--                    <ol class="breadcrumb">
+                                            <li>
+                                                <a href="index.html">
+                                                    <i class="ion-ios-home"></i>
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li class="active">Service</li>
+                                        </ol>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</section><!--/#Page header-->
+
+<flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash)" ></flash-message>
+
+<section id="contact-section">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Export</div>
+            <div class="panel-body">
+
+                <div class="form-group" ng-repeat="(key,value) in providerList"  ng-if="!$first">                    
+                    <label>{{key.replace("_", " ") | uppercase}}</label>
+                    <input type="text" class="form-control" ng-model="providerList[key]">        
+                </div>
+
+                <input type="hidden" ng-model="collectionName">
+
+                <div class="well well-lg text-center bg-gray">                                    
+                    <button class="btn btn-lg btn-primary" ng-click="save(id)">Save</button>
+                    <button class="btn btn-lg btn-success" ng-click="export(id)">Save & Export to .xlsx</button>
+                    <button class="btn btn-lg btn-info" onclick="history.back()">Back</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

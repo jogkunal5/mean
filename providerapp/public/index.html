@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="ProviderApp">
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+                <link href="css/justified-nav.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <link rel="stylesheet" href="css/jquery.fancybox.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/responsive.css">
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="js/vendor/ie-emulation-modes-warning.js"></script>     
+        <script src="js/vendor/js/jquery.min.js"></script>        
+        <script src="js/vendor/js/bootstrap.min.js"></script>                        
+        <script src="js/vendor/js/owl.carousel.min.js"></script>
+        <script src="js/vendor/js/wow.min.js"></script>
+        <script src="js/vendor/js/jquery.fancybox.js"></script>
+        <script src="js/vendor/js/moment.js"></script>        
+        <script src="js/vendor/js/bootstrap-datetimepicker.js"></script>        
+
+
+
+        <!-- template main js -->
+        <script src="js/vendor/js/main.js"></script>
+
+        <title>Provider List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <!--
+        ==================================================
+        Header Section Start
+        ================================================== -->
+        <header id="top-bar" class="navbar-fixed-top animated-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+
+                    <!-- logo -->
+                    <div class="navbar-brand">
+                        <a href="#/home" >
+                            <img src="images/dst.png" alt="">
+                            <!--                            <b>I D E A S&nbsp;&nbsp;&nbsp;P O R T A L</b>-->
+                        </a>
+                    </div>
+                    <!-- /logo -->
+                </div>
+                <!-- main menu -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#/home" >Home</a></li>                            
+                            <li><a href="#/import">Import Document</a></li>
+                            <li><a href="#/manage">Manage</a></li>
+                            <li><a href="#/provider">Provider List</a></li>
+                            <!--                            <li class="dropdown">
+                                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Ideas <span class="caret"></span></a>
+                                                            <div class="dropdown-menu">
+                                                                <ul>
+                                                                    <li><a href="#/users">Post New Idea</a></li>
+                                                                    <li><a href="#/manage">Manage Ideas</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>-->                            
+                        </ul>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+            </div>
+        </header>
+
+        <main ng-view></main>
+
+        <!--
+        ==================================================
+        Footer Section Start
+        ================================================== -->
+        <footer id="footer">
+            <div class="container">
+                <div class="col-md-8">
+                    <p class="copyright">Copyright: <span>2016</span> | DST Systems <a href="javascript:void(0);"></a></p>
+                </div>
+            </div>
+        </footer> <!-- /#footer -->
+
+
+        <script type="text/javascript">            
+            setTimeout(function () {
+            $('.flash-message').fadeOut('fast');
+            }, 1000); // <-- time in milliseconds
+        </script>
+
+        <script src="js/vendor/angular/angular.js"></script>
+        <script src="js/vendor/angular/angular-route.js"></script>        
+        <script src="js/app.js"></script>
+        <script src="js/controllers/ImportController.js"></script>            
+        <script src="js/controllers/ManageController.js"></script>
+        <script src="js/controllers/HomeController.js"></script>
+        <script src="js/controllers/ProviderController.js"></script>
+        <script src="js/controllers/FlashController.js"></script>
+        <script src="js/directives/fileModel.js"></script>
+        <script src="js/directives/modal.js"></script>
+        <script src="js/services/multipartForm.js"></script>        
+        <script src="js/services/flashService.js"></script>
+        <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
+    </body>
+</html>

@@ -1,0 +1,4 @@
+{    
+  "directory": "bower_components",
+  "proxy":"http://czproxy.dstcorp.net:9119"
+}
