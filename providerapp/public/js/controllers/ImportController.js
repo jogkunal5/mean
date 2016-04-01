@@ -12,8 +12,6 @@ ProviderApp.controller('ImportController', ['$scope', '$http', 'multipartForm', 
 
         $scope.addContact = function () {
             multipartForm.post('/providerlist', $scope.provider);
-            var message = "<strong>List Created!</strong> The list <em>" + $scope.lastAdded.content + "</em> has been created. <a ng-click='undoAdd();' href=''>Undo</a>";
-            Flash.create('danger', message, 0, 'customAlert');
         };
 
         if ($routeParams.id !== undefined) {

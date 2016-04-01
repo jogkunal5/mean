@@ -33,6 +33,7 @@ a:hover {
 .section-heading {
   text-align: center;
   margin-bottom: 65px;
+  padding: 0px 20px;
 }
 .section-heading p {
   font-size: 14px;
@@ -194,7 +195,7 @@ a:hover {
   border-radius: 0;
 }
 #call-to-action {
-  background: #51626F;
+  background: #C13337;
   background-size: cover;
   background-attachment: fixed;
   padding: 40px 0;
@@ -219,14 +220,14 @@ a:hover {
 }
 #call-to-action .block .btn-contact {
   background: #69BE28;
-  color: #fff;
   border: none;
   padding: 16px 35px;
   margin-top: 20px;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 2px;
-  text-transform: uppercase;
   border-radius: 0;
+  font-weight: bold;
+  color: #fff;
 }
 #call-to-action .block .btn-contact i {
   margin-right: 10px;
@@ -247,7 +248,7 @@ a:hover {
   color: #727272;
   font-size: 16px;
   line-height: 28px;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 #about .block img {
   max-width: 100%;
@@ -377,7 +378,7 @@ figure figcaption p {
   margin-top: 5px;
 }
 #feature {
-  padding: 80px 0;
+  padding: 10px 0;
 }
 #feature .media {
   margin: 0px 0 70px 0;
@@ -545,7 +546,7 @@ ul.social-icons li {
   background-size: cover;
   padding: 85px 0 20px 0;
   position: relative;
-  background: #51626F;
+  background: #bb4814 none repeat scroll 0 0;
   color: #fff;
 }
 .global-page-header h2 {
@@ -1083,4 +1084,8 @@ article {
   padding: 8px 0;
   color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.st-selected > td {
+  background: aliceblue;
 }

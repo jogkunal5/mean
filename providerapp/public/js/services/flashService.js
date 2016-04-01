@@ -13,10 +13,10 @@
     'use strict';
 
     angular
-        .module('ProviderApp')
-        .factory('flashService', Service);
+            .module('ProviderApp')
+            .factory('flashService', Service);
 
-    function Service($rootScope) {
+    function Service($rootScope, $timeout) {
         var service = {};
 
         service.Success = Success;
@@ -47,9 +47,9 @@
         function Success(message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
-                type: 'success',                 
+                type: 'success',
                 keepAfterLocationChange: keepAfterLocationChange
-            };
+            };            
         }
 
         function Error(message, keepAfterLocationChange) {

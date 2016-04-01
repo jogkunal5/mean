@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var router=express.Router();
+var router = express.Router();
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
 var db = mongojs('providerapp');
@@ -8,7 +8,9 @@ var multer = require('multer');
 var xlsx_to_json = require("xlsx-to-json");
 var xls_to_json = require("xls-to-json");
 var json2xls = require('json2xls');
+var XLSX = require('xlsx');
 var path = require('path');
+
 
 var storage = multer.diskStorage({//multers disk storage settings
     destination: function (req, file, cb) {
@@ -29,53 +31,67 @@ router.use(bodyParser.json()); // To parse the body that we received from input
  *************************************************************************************/
 
 router.route('/')
-.post(function (req, res) { // listens for the POST request from the controller
-    //console.log("===========" + req.file.path);
-    xls_to_json({
-        input: req.file.path,
-        output: "output.json"
-    }, function (err, data) {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log(data);
-            for (var key in data) {
-                var that=data[key];
-                for(var row in that){
-                    var newKey=row.trim().toLowerCase().replace(/ /g,'_').replace(/(\r\n|\n|\r)/gm,"_");;                    
-                    that[newKey] = that[row].trim();                    
-                    if (newKey !== row) {
-                        delete that[row];
-                    }
-                }                
-            }
-            console.log("=====================");
-            console.log(data);
-            
-            var collectionName = req.body.title.toLowerCase().replace(/ /g, '_');
-            db.collection(collectionName).insert(data, function (err, doc) {
-                console.log(err);
-                //res.json(doc);
+        .post(function (req, res) { // listens for the POST request from the controller
+            //console.log("===========" + req.file.path);
+
+            var workbook = XLSX.readFile(req.file.path);
+            //console.log(workbook);
+            var result = {};
+            workbook.SheetNames.forEach(function (sheetName) {
+                var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                if (roa.length > 0) {
+                    result = roa;
+                }
             });
-        }
-    });
+            //return result;
+            //console.log(result);
 
-    req.body.dt_id = process.env['USERNAME'];
-    req.body.user_domain = process.env['USERDOMAIN'];
-    req.body.computer_name = process.env['COMPUTERNAME'];
-    req.body.logon_server = process.env['LOGONSERVER'];
-    db.collection('providerlist').insert(req.body, function (err, doc) {
-        console.log(err);
-        res.json(doc);
-    });
-})
+            var jsonData = {};
+            var dropdown = [];
+            var attrTypes = result[0];            
+            for (var i = 1; i < result.length; i++) {
+                var obj = result[i];
+                for (var key in obj) {
+                    var attrName = key;
+                    var attrValue = obj[key];
 
-.get(function (req, res) { //This tells the server to listen for the get request for created providerlist throughout
-    db.collection('providerlist').find(function (err, docs) {
-        //console.log(docs);
-        res.json(docs);
-    });
-});
+                    //Check attr type defined for not
+                    if (attrTypes[attrName]) {
+                        var type = attrTypes[attrName].toLowerCase().replace(/ /g, ''); // Means type is given                        
+                        if (type === "selectbox") {
+                            dropdown[i] = attrValue;
+                        }
+                    } else {
+                        //console.log(type); // Means type is not given
+                        jsonData = attrName + ":" + attrValue;
+                    }                    
+                }
+            }
+            
+            console.log(dropdown);
+
+//            var collectionName = req.body.title.toLowerCase().replace(/ /g, '_');
+//            db.collection(collectionName).insert(result, function (err, doc) {
+//                //console.log(err);
+//                //res.json(doc);
+//            });
+//
+//            req.body.dt_id = process.env['USERNAME'];
+//            req.body.user_domain = process.env['USERDOMAIN'];
+//            req.body.computer_name = process.env['COMPUTERNAME'];
+//            req.body.logon_server = process.env['LOGONSERVER'];
+//            db.collection('providerlist').insert(req.body, function (err, doc) {
+//                //console.log(err);
+//                res.json(doc);
+//            });
+        })
+
+        .get(function (req, res) { //This tells the server to listen for the get request for created providerlist throughout
+            db.collection('providerlist').find(function (err, docs) {
+                //console.log(docs);
+                res.json(docs);
+            });
+        });
 
 
 /*************************************************************************************
@@ -84,31 +100,31 @@ router.route('/')
  *************************************************************************************/
 
 router.route('/:id')
-.get(function (req, res) {
-    var id = req.params.id;
-    db.collection('provider').findOne({_id: mongojs.ObjectId(id)}, function (err, data) {
-        res.json(data);
-    });
-})
-.put(function (req, res) {
-    var id = req.params.id;
-    console.log(req.body.name);
-    db.collection('providerlist').findAndModify({
-        query: {_id: mongojs.ObjectId(id)},
-        update: {$set: {
-                title: req.body.title,
-                description: req.body.description
-            }}, new : true}, function (err, doc) {
-        res.json(doc);
-    });
-})
-.delete(function (req, res) {
-    var id = req.params.id; // to get the value of id from url
-    console.log(id);
-    db.collection('providerlist').remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
-        res.json(doc);
-    });
-});
+        .get(function (req, res) {
+            var id = req.params.id;
+            db.collection('provider').findOne({_id: mongojs.ObjectId(id)}, function (err, data) {
+                res.json(data);
+            });
+        })
+        .put(function (req, res) {
+            var id = req.params.id;
+            console.log(req.body.name);
+            db.collection('providerlist').findAndModify({
+                query: {_id: mongojs.ObjectId(id)},
+                update: {$set: {
+                        title: req.body.title,
+                        description: req.body.description
+                    }}, new : true}, function (err, doc) {
+                res.json(doc);
+            });
+        })
+        .delete(function (req, res) {
+            var id = req.params.id; // to get the value of id from url
+            console.log(id);
+            db.collection('providerlist').remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
+                res.json(doc);
+            });
+        });
 
 
-module.exports=router;
+module.exports = router;

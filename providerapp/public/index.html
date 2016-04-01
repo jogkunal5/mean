@@ -68,8 +68,8 @@ and open the template in the editor.
                     <div class="main-menu">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#/home" >Home</a></li>                            
-                            <li><a href="#/import">Import Document</a></li>
-                            <li><a href="#/manage">Manage</a></li>
+                            <li><a href="#/import">Import Provider List</a></li>
+<!--                            <li><a href="#/manage">Manage</a></li>-->
                             <li><a href="#/provider">Provider List</a></li>
                             <!--                            <li class="dropdown">
                                                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Ideas <span class="caret"></span></a>
@@ -102,9 +102,9 @@ and open the template in the editor.
         </footer> <!-- /#footer -->
 
 
-        <script type="text/javascript">            
+        <script type="text/javascript">
             setTimeout(function () {
-            $('.flash-message').fadeOut('fast');
+                $('.flash-message').fadeOut('fast');
             }, 1000); // <-- time in milliseconds
         </script>
 
@@ -118,8 +118,15 @@ and open the template in the editor.
         <script src="js/controllers/FlashController.js"></script>
         <script src="js/directives/fileModel.js"></script>
         <script src="js/directives/modal.js"></script>
+        <script src="js/directives/pageSelect.directive.js"></script>        
         <script src="js/services/multipartForm.js"></script>        
         <script src="js/services/flashService.js"></script>
         <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
+        <script src="js/module/smart-table.debug.js"></script>
+        <script src="js/directives/csSelect.js"></script>
+        <script src="js/directives/csSelectAll.js"></script>
+        <script src="js/vendor/angular-smart-table/dist/smart-table.min.js"></script>
+        <script src="js/vendor/js-xlsx/dist/xlsx.core.min.js"></script>
+
     </body>
 </html>

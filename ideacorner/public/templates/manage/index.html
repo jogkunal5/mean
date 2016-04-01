@@ -89,11 +89,11 @@
 
                 <thead>
                     <tr>
-                        <th st-sort="title"><a href="javascript:void(0);">Idea <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th st-sort="title"><a href="javascript:void(0);" title="Double click to sort">Idea <i class="glyphicon glyphicon-sort"></i></a></th>
                         <!--                        <th st-sort="description"><a href="javascript:void(0);">Description <i class="glyphicon glyphicon-sort"></i></a></th> -->
-                        <th st-sort="theme_name"><a href="javascript:void(0);">Theme <i class="glyphicon glyphicon-sort"></i></a></th> 
-                        <th st-sort="theme_quarter"><a href="javascript:void(0);">Quarter <i class="glyphicon glyphicon-sort"></i></a></th> 
-                        <th st-sort="team"><a href="javascript:void(0);">Team <i class="glyphicon glyphicon-sort"></i></a></th>
+                        <th st-sort="theme_name"><a href="javascript:void(0);" title="Double click to sort">Theme <i class="glyphicon glyphicon-sort"></i></a></th> 
+                        <th st-sort="theme_quarter"><a href="javascript:void(0);" title="Double click to sort">Quarter <i class="glyphicon glyphicon-sort"></i></a></th> 
+                        <th st-sort="team"><a href="javascript:void(0);" title="Double click to sort">Team <i class="glyphicon glyphicon-sort"></i></a></th>
                         <!--                    <th>DTID</th> -->
                         <th>
                             <select st-search="status" style="width:90px;">
@@ -134,8 +134,7 @@
                         <td colspan="8" class="text-center">
                             <div  st-items-by-page="15" st-pagination=""></div>
                         </td>
-                    </tr>
-                    </tbody>
+                    </tr>                    
                 </tfoot>
 
             </table>
@@ -170,12 +169,13 @@
                 {{ideacorner.description}}
             </p>
         </div>
+        
 
         <div ng-if="ideacorner.file">
             <div class='form-group'>            
                 <label>Attachment</label>                    
                 <p>
-                    <button class="btn btn-sm btn-danger" ng-click="download(contact._id)"><i class="glyphicon glyphicon-download-alt"></i></button>
+                    <button class="btn btn-sm btn-danger" ng-click="download(ideacorner._id)"><i class="glyphicon glyphicon-download-alt"></i></button>
                 </p>
             </div>        
         </div>

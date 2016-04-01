@@ -1,4 +1,4 @@
-var ProviderApp = angular.module('ProviderApp', ['ngRoute'])
+var ProviderApp = angular.module('ProviderApp', ['ngRoute','smart-table'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     .when('/home', {

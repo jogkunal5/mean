@@ -20,12 +20,12 @@ angular.module('IdeaCorner')
                 });
             };
 
-
             $scope.showModal = false;
             $scope.toggleModal = function (id) {
                 $http.get('/ideacorner/' + id).success(function (response) {
                     $scope.ideacorner = response;
-                    $scope.ideacorner.rate = $scope.ideacorner.rate.toString();
+                    if ($scope.ideacorner.rate)
+                        $scope.ideacorner.rate = $scope.ideacorner.rate.toString();
                     $scope.showModal = !$scope.showModal;
                 });
             };

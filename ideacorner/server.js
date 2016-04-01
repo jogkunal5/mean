@@ -12,9 +12,14 @@ var superwisor = require('supervisor');
 var url = require('url');
 
 // To test whether server is running correctly
-/* app.get("/", function(req, res){
- res.send("Hello world from server.js");
- }); */
+app.get("/", function (req, res) {
+    //res.send("Hello world from server.js");
+    //console.log("In / get");
+    var dt_id = process.env['USERNAME'];
+    //console.log("=====>" + dt_id);
+    res.cookie('dt_id', dt_id);
+    res.sendFile(__dirname + "/public/index.html");
+});
 
 app.use(express.static(__dirname + "/public")); // express.static means we are telling the server to look for static file i.e. html,css,js etc.
 
@@ -33,13 +38,8 @@ app.use(bodyParser.json()); // To parse the body that we received from input
 //});
 
 
-app.get('/', function (req, res) {
-    var dt_id = process.env['USERNAME'];
-    res.cookie('dt_id', dt_id);
-    res.sendFile(__dirname + "/public/index.html");
-});
-
-var storage = multer.diskStorage({//multers disk storage settings
+var storage = multer.diskStorage({
+    //multers disk storage settings
     destination: function (req, file, cb) {
         cb(null, './uploads/');
     },
@@ -78,6 +78,7 @@ function getCurrentDate() {
 
 //This tells the server to listen for the get request for created contactlist throughout
 app.get('/ideacorner', function (req, res) {
+    
     db.collection('ideacorner').find(function (err, docs) {
         res.json(docs);
     });
@@ -100,7 +101,7 @@ app.get('/get_by_data', function (req, res) {
     var query = url_parts.query;
     console.log("======================================================");
     console.log(query);
-    db.collection('ideacorner').find(query, function (err, docs) {        
+    db.collection('ideacorner').find(query, function (err, docs) {
         res.json(docs);
     });
 });
@@ -164,7 +165,6 @@ app.get('/download/:id', function (req, res) {
         });
     });
 });
-
 
 
 app.listen(2000);

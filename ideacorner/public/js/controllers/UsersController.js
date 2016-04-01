@@ -1,18 +1,18 @@
 IdeaCorner.controller('UsersController', ['$scope', '$http', 'multipartForm', '$routeParams', function ($scope, $http, multipartForm, $routeParams) {
         console.log("Hello World from controller");
-
         $scope.contact = {};
-        $scope.team = "DT207291";
+        $scope.team = getCookie("dt_id");
 
         var refresh = function () {
-            $http.get('/ideacorner').success(function (response) {
+            $http.get('/ideacorner/').success(function (response) {
                 console.log("I got the data that I requested");
                 $scope.contactlist = response; // This will put data into our html file
                 $scope.contact = "";
+                
             });
         };
 
-        $scope.addIdea = function () {
+        $scope.addIdea = function (contact) {
             $scope.contact.team = $scope.team;
             $scope.contact.title = $scope.title;
             $scope.contact.description = $scope.description;
@@ -22,7 +22,8 @@ IdeaCorner.controller('UsersController', ['$scope', '$http', 'multipartForm', '$
             $scope.contact.to = $scope.to;
             multipartForm.post('/ideacorner', $scope.contact);            
             alert("Idea posted successfully");
-            $scope.contact = "";
+            $scope.contact = {};
+            $scope.contact = "";            
         };
 
         if ($routeParams.id !== undefined) {

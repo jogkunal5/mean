@@ -16,8 +16,12 @@
             <div class="panel-heading">Import Document</div>
             <div class="panel-body">
 
+                <div class="flash-message" ng-if="flash">
+                    <div class="{{'alert alert-' + flash.type}} alert-dismissible" role="alert" ng-bind="flash.message"></div>
+                </div>
+
                 <div class='form-group'>                        
-                    <label>Import Document (.xls format)</label>                        
+                    <label>Import Provider List (.xls format)</label>                        
                     <input type="file" file-model="provider.file" id="myfile">
                 </div>
 
