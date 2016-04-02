@@ -1,5 +1,5 @@
 angular.module('ProviderApp')
-        .controller('ProviderController', function ($http, $scope, $routeParams, $timeout, $window, flashService) {
+        .controller('ProviderController', function ($http, $scope, $routeParams, $timeout, $window, flashService, ngSanitize) {
 
 
             $scope.displayedCollection = [];

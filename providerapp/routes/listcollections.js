@@ -12,8 +12,7 @@ router.use(bodyParser.json()); // To parse the body that we received from input
  *@Methods: .get
  *************************************************************************************/
 
-router.route('/').get(function (req, res) {
-    console.log("*******************In /listcollections********************")
+router.route('/').get(function (req, res) {    
     db.listCollections(function (err, collections) {        
         res.json(collections);
     });

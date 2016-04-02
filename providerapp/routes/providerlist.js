@@ -46,44 +46,44 @@ router.route('/')
             //return result;
             //console.log(result);
 
-            var jsonData = {};
-            var dropdown = [];
-            var attrTypes = result[0];            
-            for (var i = 1; i < result.length; i++) {
-                var obj = result[i];
-                for (var key in obj) {
-                    var attrName = key;
-                    var attrValue = obj[key];
-
-                    //Check attr type defined for not
-                    if (attrTypes[attrName]) {
-                        var type = attrTypes[attrName].toLowerCase().replace(/ /g, ''); // Means type is given                        
-                        if (type === "selectbox") {
-                            dropdown[i] = attrValue;
-                        }
-                    } else {
-                        //console.log(type); // Means type is not given
-                        jsonData = attrName + ":" + attrValue;
-                    }                    
-                }
-            }
-            
-            console.log(dropdown);
-
-//            var collectionName = req.body.title.toLowerCase().replace(/ /g, '_');
-//            db.collection(collectionName).insert(result, function (err, doc) {
-//                //console.log(err);
-//                //res.json(doc);
-//            });
+//            var jsonData = {};
+//            var dropdown = [];
+//            var attrTypes = result[0];            
+//            for (var i = 1; i < result.length; i++) {
+//                var obj = result[i];
+//                for (var key in obj) {
+//                    var attrName = key;
+//                    var attrValue = obj[key];
 //
-//            req.body.dt_id = process.env['USERNAME'];
-//            req.body.user_domain = process.env['USERDOMAIN'];
-//            req.body.computer_name = process.env['COMPUTERNAME'];
-//            req.body.logon_server = process.env['LOGONSERVER'];
-//            db.collection('providerlist').insert(req.body, function (err, doc) {
-//                //console.log(err);
-//                res.json(doc);
-//            });
+//                    //Check attr type defined for not
+//                    if (attrTypes[attrName]) {
+//                        var type = attrTypes[attrName].toLowerCase().replace(/ /g, ''); // Means type is given                        
+//                        if (type === "selectbox") {
+//                            dropdown[i] = attrValue;
+//                        }
+//                    } else {
+//                        //console.log(type); // Means type is not given
+//                        jsonData = attrName + ":" + attrValue;
+//                    }                    
+//                }
+//            }
+            
+//            console.log(dropdown);
+
+            var collectionName = req.body.title.toLowerCase().replace(/ /g, '_');
+            db.collection(collectionName).insert(result, function (err, doc) {
+                //console.log(err);
+                //res.json(doc);
+            });
+
+            req.body.dt_id = process.env['USERNAME'];
+            req.body.user_domain = process.env['USERDOMAIN'];
+            req.body.computer_name = process.env['COMPUTERNAME'];
+            req.body.logon_server = process.env['LOGONSERVER'];
+            db.collection('providerlist').insert(req.body, function (err, doc) {
+                //console.log(err);
+                res.json(doc);
+            });
         })
 
         .get(function (req, res) { //This tells the server to listen for the get request for created providerlist throughout
