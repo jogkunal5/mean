@@ -71,8 +71,10 @@
 </section><!--/#Page header-->
 
 
+
 <section id="contact-section">
     <div class="container">
+
 
         <div class="flash-message" ng-if="flash">
             <div class="{{'alert alert-' + flash.type}} alert-dismissible" role="alert" ng-bind="flash.message"></div>
@@ -91,7 +93,7 @@
                         <!--                        <th cs-select-all="val"  selected="selected" ng-click="selectAll(val)"></th>-->
                         <th></th>
                         <th st-sort="key" ng-repeat="(key, val) in providerList[0]" ng-if="!$first && $index <= 3">                                            
-                            {{key.replace("_", " ") | uppercase}} &#8645;
+                            {{mySplit(key,0) | uppercase}}
                         </th>                        
                     </tr>
                 </thead>
@@ -129,14 +131,21 @@
 
 
 <modal title="Edit Record" visible="showModal" data-backdrop="static" data-keyboard="false">
-    
-     <p ng-bind-html="providerModelData"></p>
 
-    
-<!--    <div class="form-group" ng-repeat="(index, formVal) in providerModelData"  ng-if="!$first">                    
-        <label>{{index.replace("_", " ") | uppercase}}</label>
-        <input type="text" class="form-control" ng-model="providerModelData[index]">        
-    </div>-->
+    <div class="form-group" ng-repeat="(index, formVal) in providerModelData"  ng-if="!$first">                    
+        <label>{{mySplit(index,0) | uppercase}}</label>
+        <div ng-if="!mySplit(index,1)">
+            <input type="text" class="form-control" ng-model="providerModelData[index]">
+        </div>
+        <div ng-if="mySplit(index,1) == 'datepicker'">
+            <input type="text" class="form-control" ng-model="providerModelData[index]">            
+        </div>
+        <div ng-if="mySplit(index,1) == 'select'">                        
+            <select class="form-control" ng-init="getDropdownData(index,colName)" ng-options="dropdown._id for dropdown in dropdownData[colName]">
+                <option value="">Select</option>
+            </select>
+        </div>
+    </div>
 
     <input type="hidden" ng-model="colName">
 
