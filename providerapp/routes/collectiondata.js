@@ -35,29 +35,29 @@ router.route('/:id/collectionName/:collectionName')
                 _id: mongojs.ObjectId(id)
             }, function (err, doc) {
 
-                console.log(doc);
+//                console.log(doc);
+//
+//                var html = "<div>";
+//
+//                for (var key in doc) {
+//                    console.log("Key:" + key);
+//                    console.log("Value:" + doc[key]);
+//
+//                    var newkey = key.split("|");
+//
+//                    if (newkey[1] === "string") {
+//                        html += "<input type='text' ng-model='providerModelData." + newkey[0] + "' class='form-control'><br>";
+//                    } else if (newkey[1] === "number") {
+//                        html += "<input type='number' ng-model='providerModelData." + newkey[0] + "' class='form-control'><br>";
+//                    } else if (newkey[1] === "text") {
+//                        html += "<textarea ng-model='providerModelData." + newkey[0] + "' class='form-control'></textarea><br>";
+//                    }
+//                }
+//
+//                html += "</div>";
+//                console.log(html);
 
-                var html = "<div>";
-
-                for (var key in doc) {
-                    console.log("Key:" + key);
-                    console.log("Value:" + doc[key]);
-
-                    var newkey = key.split("|");
-
-                    if (newkey[1] === "string") {
-                        html += "<input type='text' ng-model='providerModelData." + newkey[0] + "' class='form-control'><br>";
-                    } else if (newkey[1] === "number") {
-                        html += "<input type='number' ng-model='providerModelData." + newkey[0] + "' class='form-control'><br>";
-                    } else if (newkey[1] === "text") {
-                        html += "<textarea ng-model='providerModelData." + newkey[0] + "' class='form-control'></textarea><br>";
-                    }
-                }
-
-                html += "</div>";
-                console.log(html);
-
-                res.json(html);
+                res.json(doc);
             });
 
 

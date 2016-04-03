@@ -15,7 +15,13 @@ router.use(bodyParser.json()); // To parse the body that we received from input
 router.route('/').get(function (req, res) {    
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
-    db.collection(query.collection).find(function (err, docs) {        
+    console.log(query.query);
+    db.collection(query.colName).aggregate([{
+        "$group":{
+            "_id":"$"+query.query
+            }
+        }],function (err, docs) {        
+        console.log(docs);
         res.json(docs);
     });
 });
