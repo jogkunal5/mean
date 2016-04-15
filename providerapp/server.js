@@ -18,6 +18,7 @@ var providerlist=require('./routes/providerlist');
 var collectiondata=require('./routes/collectiondata');
 var listcollections=require('./routes/listcollections');
 var getcollectiondata=require('./routes/getcollectiondata');
+var getdropdowndata=require('./routes/getdropdowndata');
 var exports=require('./routes/exports');
 var savedocument=require('./routes/savedocument');
 
@@ -25,6 +26,7 @@ app.use('/providerlist', providerlist);
 app.use('/collectiondata', collectiondata);
 app.use('/listcollections', listcollections);
 app.use('/getcollectiondata', getcollectiondata);
+app.use('/getdropdowndata', getdropdowndata);
 app.use('/exports', exports);
 app.use('/save', savedocument);
 

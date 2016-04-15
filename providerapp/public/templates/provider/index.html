@@ -75,26 +75,36 @@
 <section id="contact-section">
     <div class="container">
 
-
         <div class="flash-message" ng-if="flash">
             <div class="{{'alert alert-' + flash.type}} alert-dismissible" role="alert" ng-bind="flash.message"></div>
         </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading"><h4 class="panel-title">Edit Provider's List</h4></div>
-            <select class="form-control" ng-model="collection">
+        <div class="well well-sm">
+            <select class="form-control" ng-model="collection" ng-change="getCollectionData()">
                 <option value="">Select Document Name</option>
-                <option ng-click="getCollectionData()" ng-repeat="(key, val) in collectionList" value="{{val.name}}">{{val.name| uppercase}}</option>
+                <option ng-repeat="(key, val) in collectionList" value="{{val.name}}">{{val.name| uppercase}}</option>
             </select>
-            <input type="text" class="form-control" ng-model="row.names" placeholder="Instant Search">
+        </div>
+
+        <div class="panel panel-primary" ng-show="collection">
+            <div class="panel-heading"><h4 class="panel-title">EDIT {{collectionName|uppercase}}</h4></div>            
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input type="text" class="form-control" ng-model="row.names" placeholder="Search">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            </div>
+
+
             <table class="table gridtbl" st-table="displayedCollection" st-safe-src="providerList">
                 <thead>
                     <tr>                
                         <!--                        <th cs-select-all="val"  selected="selected" ng-click="selectAll(val)"></th>-->
                         <th></th>
                         <th st-sort="key" ng-repeat="(key, val) in providerList[0]" ng-if="!$first && $index <= 3">                                            
-                            {{mySplit(key,0) | uppercase}}
+                            {{mySplit(key, 0) | uppercase}} <i class="glyphicon glyphicon-sort"></i>
                         </th>                        
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -105,8 +115,8 @@
                             {{cell}}
                         </td>
                         <td>                                    
-                            <!--                                                    <a class="btn btn-warning" ng-href="#/collectiondata/{{row._id}}/collectionName/{{collectionName}}">Edit</a>                        -->
-                            <button ng-click="toggleModal(row._id, collectionName)" class="btn btn-success">Edit</button>
+                            <!--                            <a class="btn btn-warning" ng-href="#/collectiondata/{{row._id}}/collectionName/{{collectionName}}">Edit Page</a>                        -->
+                            <button ng-click="toggleModal(row._id, collectionName)" class="btn btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></button>
                         </td>                
                     </tr>       
                 </tbody>
@@ -117,9 +127,9 @@
                             <div  st-items-by-page="10" st-pagination=""></div>
                         </td>
                     </tr>                    
-                    <tr ng-show="collection">
-                        <td colspan="3" class="text-center">
-                            <button class="btn btn-danger" ng-click="exportAll(collectionName)">Export All/Selected</button>
+                    <tr>
+                        <td colspan="3" class="text-center">                            
+                            <button class="btn btn-danger" ng-click="exportAll(collectionName)"><i class="glyphicon glyphicon-export"></i> Export All/Selected</button>
                             <!--                            <button disabled="" class="btn btn-danger" ng-click="exportAll(collectionName)">Export selected to excel</button>-->
                         </td>
                     </tr>
@@ -133,16 +143,23 @@
 <modal title="Edit Record" visible="showModal" data-backdrop="static" data-keyboard="false">
 
     <div class="form-group" ng-repeat="(index, formVal) in providerModelData"  ng-if="!$first">                    
-        <label>{{mySplit(index,0) | uppercase}}</label>
-        <div ng-if="!mySplit(index,1)">
+        <label>{{mySplit(index, 0) | uppercase}}</label>
+        <div ng-if="!mySplit(index, 1)">
             <input type="text" class="form-control" ng-model="providerModelData[index]">
         </div>
-        <div ng-if="mySplit(index,1) == 'datepicker'">
-            <input type="text" class="form-control" ng-model="providerModelData[index]">            
+
+        <div ng-if="mySplit(index, 1) == 'datepicker'">            
+            <input type="text" style="padding: 5px;" ng-model="providerModelData[index]" datepicker/><i class="glyphicon glyphicon-calendar" style="font-size: 28px; top:9px; left: -30px;"></i>              
         </div>
-        <div ng-if="mySplit(index,1) == 'select'">                        
-            <select class="form-control" ng-init="getDropdownData(index,colName)" ng-options="dropdown._id for dropdown in dropdownData[colName]">
+
+        <div ng-if="mySplit(index, 1) == 'text'">
+            <textarea class="form-control" ng-model="providerModelData[index]"></textarea>            
+        </div>
+
+        <div ng-if="mySplit(index, 1) == 'select'">                     
+            <select class="form-control" ng-model="providerModelData[index]">                
                 <option value="">Select</option>
+                <option ng-repeat="dropdown in dropdownData[index]" value="{{dropdown._id}}">{{dropdown._id}}</option>
             </select>
         </div>
     </div>
@@ -157,6 +174,6 @@
 
 <style>
     .modal-dialog{
-        width: 800px;
+        width: 1000px;
     }
 </style>

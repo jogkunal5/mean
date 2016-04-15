@@ -19,35 +19,36 @@
     </div>   
 </section><!--/#Page header-->
 
-<section id="hero-area" >
+
+<section id="hero-area">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-6 col-sm-6">
                 <div class="block wow fadeInUp" data-wow-delay=".3s">
-
-                    <img src="images/idea.png" alt="">
-
-                    <!-- Slider -->
-                    <section class="cd-intro">
-                        <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >                            
-                            <span class="cd-words-wrapper">
-                                <b class="is-visible">IDEA CORNER</b>                                    
-                            </span>
-                        </h1>
-                    </section> <!-- cd-intro -->
-                    <!-- /.slider -->
-                    <h2 class="wow fadeInUp animated" data-wow-delay=".6s" style="text-transform: none;">
-                       This is a management tool for organizations managing and coordinating any set of activities at any stage.
-                    </h2>
-                    <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#/users" data-section="#works" >
-                        Post New Idea
-                    </a>
-
+                    <h1>
+                        Idea Corner
+                    </h1>                   
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
+                        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 
+                        survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in 
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                        like Aldus PageMaker including versions of Lorem Ipsum.
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                        like Aldus PageMaker including versions of Lorem Ipsum.
+                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software                        
+                    </p>                    
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="block wow fadeInRight" data-wow-delay=".3s" data-wow-duration="500ms">                    
+                    <img src="images/idea.png" alt="">                    
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section id="works" class="works">
     <div class="container">
@@ -57,18 +58,17 @@
             </h1>
         </div>
         <div class="row">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered">                
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Status</th>
                         <th>Comments</th>
-                    </tr>
+                    </tr>                
                 </thead>
                 <tbody>
-                    <tr>
-                        <tr ng-repeat="contact in rowCollection|orderBy:-1">
+                    <tr ng-repeat="contact in rowCollection| orderBy: -1">
                         <td>{{contact.title}}</td>
                         <td>{{contact.description}}</td>                                                                    
                         <td>{{contact.status}}</td>

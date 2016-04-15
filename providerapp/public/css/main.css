@@ -1089,3 +1089,13 @@ article {
 .st-selected > td {
     background: aliceblue;
 }
+
+.form-control{
+    border-radius: 0px;
+}
+
+footer{
+    background: #000;
+    color: #fff;
+    padding-top: 12px;
+}

@@ -43,37 +43,9 @@ router.route('/')
                     result = roa;
                 }
             });
-            //return result;
-            //console.log(result);
-
-//            var jsonData = {};
-//            var dropdown = [];
-//            var attrTypes = result[0];            
-//            for (var i = 1; i < result.length; i++) {
-//                var obj = result[i];
-//                for (var key in obj) {
-//                    var attrName = key;
-//                    var attrValue = obj[key];
-//
-//                    //Check attr type defined for not
-//                    if (attrTypes[attrName]) {
-//                        var type = attrTypes[attrName].toLowerCase().replace(/ /g, ''); // Means type is given                        
-//                        if (type === "selectbox") {
-//                            dropdown[i] = attrValue;
-//                        }
-//                    } else {
-//                        //console.log(type); // Means type is not given
-//                        jsonData = attrName + ":" + attrValue;
-//                    }                    
-//                }
-//            }
-            
-//            console.log(dropdown);
 
             var collectionName = req.body.title.toLowerCase().replace(/ /g, '_');
             db.collection(collectionName).insert(result, function (err, doc) {
-                //console.log(err);
-                //res.json(doc);
             });
 
             req.body.dt_id = process.env['USERNAME'];
@@ -108,7 +80,6 @@ router.route('/:id')
         })
         .put(function (req, res) {
             var id = req.params.id;
-            console.log(req.body.name);
             db.collection('providerlist').findAndModify({
                 query: {_id: mongojs.ObjectId(id)},
                 update: {$set: {
@@ -120,7 +91,6 @@ router.route('/:id')
         })
         .delete(function (req, res) {
             var id = req.params.id; // to get the value of id from url
-            console.log(id);
             db.collection('providerlist').remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
                 res.json(doc);
             });

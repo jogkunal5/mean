@@ -1,4 +1,5 @@
 var express = require('express');
+var expressSession = require('express-session');
 var ntlm = require('express-ntlm');
 var path = require('path');
 var app = express(); // using this we can use commands, function of express in this (server.js) file
@@ -10,33 +11,25 @@ var fs = require('fs');
 var http = require('http');
 var superwisor = require('supervisor');
 var url = require('url');
+var session;
+
+app.use(expressSession({secret: 'ideacorner', resave: true, saveUninitialized: true}));
 
 // To test whether server is running correctly
 app.get("/", function (req, res) {
+    session = req.session;
     //res.send("Hello world from server.js");
     //console.log("In / get");
     var dt_id = process.env['USERNAME'];
     //console.log("=====>" + dt_id);
     res.cookie('dt_id', dt_id);
+    session.dtid = dt_id;
     res.sendFile(__dirname + "/public/index.html");
 });
 
 app.use(express.static(__dirname + "/public")); // express.static means we are telling the server to look for static file i.e. html,css,js etc.
 
 app.use(bodyParser.json()); // To parse the body that we received from input
-
-
-//function getUserName(res) {
-//    var dt_id = process.env['USERNAME'];
-//    return res.cookie('dt_id', dt_id);
-//}
-
-//app.get('*', function (req, res) {
-//    getUserName(res);
-//    // res.send("Hello world from server.js");
-//    res.sendFile(__dirname + "/public/index.html");
-//});
-
 
 var storage = multer.diskStorage({
     //multers disk storage settings
@@ -78,11 +71,24 @@ function getCurrentDate() {
 
 //This tells the server to listen for the get request for created contactlist throughout
 app.get('/ideacorner', function (req, res) {
-    
     db.collection('ideacorner').find(function (err, docs) {
-        res.json(docs);
+        if (docs.length > 0)
+            res.json(docs);
+        else
+            res.json(null);
     });
 });
+
+//app.get('/validate_user', function (req, res) {
+//    var dt_id = process.env['USERNAME'];
+//    console.log(dt_id);
+////    db.collection('user').find({dtid: session.dtid}, function (err, result) {
+////        if (result.length > 0)
+////            res.json(result);
+////        else
+////            res.json(null);
+////    });
+//});
 
 app.get('/get_users', function (req, res) {
     db.collection('user').find(function (err, docs) {
@@ -141,13 +147,39 @@ app.put('/ideacorner/:id', function (req, res) {
 
 app.get('/themes', function (req, res) {
     db.collection('themes').find().sort({_id: -1}, function (err, docs) {
-        // docs is now a sorted array 
-        res.json(docs);
+        // docs is now a sorted array         
+        if (docs.length > 0)
+            res.json(docs);
+        else
+            res.json(null);
+
     });
 });
 
 app.post('/themes', function (req, res) {
     db.collection('themes').insert(req.body.param, function (err, doc) {
+        res.json(doc);
+    });
+});
+
+app.put('/themes/:id', function (req, res) {
+    var id = req.params.id;
+    console.log(id);
+    db.collection('themes').findAndModify({
+        query: {_id: mongojs.ObjectId(id)},
+        update: {$set: {
+                theme_name: req.body.themesData.theme_name,
+                theme_quarter: req.body.themesData.theme_quarter,
+                from: req.body.themesData.from,
+                to: req.body.themesData.to
+            }}, new : true}, function (err, doc) {
+        res.json(doc);
+    });
+});
+
+app.get('/themes/:id', function (req, res) {
+    var id = req.params.id;
+    db.collection('themes').findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
         res.json(doc);
     });
 });

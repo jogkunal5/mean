@@ -1,19 +1,18 @@
 angular.module('IdeaCorner')
-        .controller('ThemesController', function ($http, $scope) {
+        .controller('ThemesController', function ($http, $scope, $routeParams) {
 
-            $scope.theme = {};
+            $scope.id = "";
 
             var refresh = function () {
                 $http.get('/themes').success(function (response) {
-                    if (response) {
-                        $scope.currentThemeName = response[0].theme_name;
-                        $scope.currentThemeQuarter = response[0].theme_quarter;
-                        $scope.from = response[0].from;
-                        $scope.to = response[0].to;
-                    }
+                    $scope.rowThemes = response; // This will put data into our html file
+                    $scope.currentThemeName = response[0].theme_name;
+                    $scope.currentThemeQuarter = response[0].theme_quarter;
+                    $scope.from = response[0].from;
+                    $scope.to = response[0].to;
                 });
             };
-            
+
             refresh();
 
             $scope.addTheme = function () {
@@ -24,6 +23,34 @@ angular.module('IdeaCorner')
                         refresh();
                     }
                 });
+            };
+
+            $scope.updateTheme = function (id) {
+                $http({
+                    url: '/themes/' + id,
+                    method: "PUT",
+                    data: {
+                        themesData: $scope.theme
+                    }
+                }).success(function (response) {
+                    if (response) {
+                        alert("Theme updated successfully");
+                    }
+                });
+            };
+
+            if ($routeParams.id) {
+                $http.get('/themes/' + $routeParams.id).success(function (response) {
+                    $scope.id = $routeParams.id;
+                    $scope.theme = response;
+                });
+            }
+
+            $scope.check = function (id) {
+                if (id)
+                    $scope.updateTheme(id);
+                else
+                    $scope.addTheme();
             };
 
         });

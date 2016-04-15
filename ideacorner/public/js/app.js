@@ -1,4 +1,4 @@
-var IdeaCorner = angular.module('IdeaCorner', ['ngRoute', 'smart-table'])
+var IdeaCorner = angular.module('IdeaCorner', ['ngRoute', 'smart-table', 'ngMessages'])
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider
                         .when('/home', {
@@ -8,6 +8,16 @@ var IdeaCorner = angular.module('IdeaCorner', ['ngRoute', 'smart-table'])
                         })
                         .when('/themes', {
                             templateUrl: 'templates/themes/index.html',
+                            controller: 'ThemesController',
+                            controllerAs: 'themes'
+                        })
+                        .when('/themes/:id', {
+                            templateUrl: 'templates/themes/form.html',
+                            controller: 'ThemesController',
+                            controllerAs: 'themes'
+                        })
+                        .when('/themes/form', {
+                            templateUrl: 'templates/themes/form.html',
                             controller: 'ThemesController',
                             controllerAs: 'themes'
                         })

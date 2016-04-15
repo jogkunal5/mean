@@ -144,9 +144,9 @@ a:hover {
     background-size: cover;
     background-attachment: fixed;
     padding: 40px 0;
-    color: #fff;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
     position: relative;
+    text-align: justify;
 }
 #hero-area:before {
     content: '';
@@ -541,12 +541,12 @@ ul.social-icons li {
     text-decoration: none;
 }
 .global-page-header {
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 135px 0 15px 0;
-  position: relative;
-  background: #02bdd5;
-  color: #fff;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 135px 0 15px 0;
+    position: relative;
+    background: #02bdd5;
+    color: #fff;
 }
 .global-page-header h2 {
     font-size: 42px;
@@ -1088,4 +1088,14 @@ article {
 .sort-dropdowns{
     padding: 10px;
     width: 200px;
+}
+
+/*
+*Custom CSS
+*/
+
+footer{
+    background: #02BDD5;
+    color: #fff;
+    padding-top: 12px;
 }

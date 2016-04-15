@@ -8,11 +8,11 @@ IdeaCorner.controller('UsersController', ['$scope', '$http', 'multipartForm', '$
                 console.log("I got the data that I requested");
                 $scope.contactlist = response; // This will put data into our html file
                 $scope.contact = "";
-                
+
             });
         };
 
-        $scope.addIdea = function (contact) {
+        $scope.addIdea = function () {            
             $scope.contact.team = $scope.team;
             $scope.contact.title = $scope.title;
             $scope.contact.description = $scope.description;
@@ -20,10 +20,10 @@ IdeaCorner.controller('UsersController', ['$scope', '$http', 'multipartForm', '$
             $scope.contact.theme_quarter = $scope.currentThemeQuarter;
             $scope.contact.from = $scope.from;
             $scope.contact.to = $scope.to;
-            multipartForm.post('/ideacorner', $scope.contact);            
+            multipartForm.post('/ideacorner', $scope.contact);
             alert("Idea posted successfully");
             $scope.contact = {};
-            $scope.contact = "";            
+            $scope.contact = "";
         };
 
         if ($routeParams.id !== undefined) {

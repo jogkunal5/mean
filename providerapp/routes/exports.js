@@ -25,7 +25,7 @@ router.route('/').put(function (req, res) {
         db.collection(req.body.collectionName).find(
                 {
                     "_id": {$in: obj_ids}
-                }, function (err, doc) {
+                }, {_id: false}, function (err, doc) {
             exportToSpreadsheet(doc, res);
         });
     } else {
@@ -36,7 +36,6 @@ router.route('/').put(function (req, res) {
 });
 
 router.route('/:id').put(function (req, res) {
-    console.log("==>In Exports");
 
     var id = req.body.providerList._id;
     delete req.body.providerList._id;
@@ -53,7 +52,7 @@ router.route('/:id').put(function (req, res) {
     });
 });
 
-function exportToSpreadsheet(doc, res) {
+function exportToSpreadsheet(doc, res) {    
     var jsonArr = {};
     var jsonArr = doc;
     var xls = json2xls(jsonArr);
@@ -61,7 +60,7 @@ function exportToSpreadsheet(doc, res) {
 
     res.setHeader('Content-disposition', 'attachment; filename=data.xlsx');
     res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
+    
     res.xls('data.xlsx', jsonArr);
 }
 

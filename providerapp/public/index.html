@@ -12,15 +12,14 @@ and open the template in the editor.
         <!--        <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
                 <link href="css/justified-nav.css" rel="stylesheet">-->
 
-<!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+        <link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/ionicons.min.css">                
         <link rel="stylesheet" href="css/jquery.fancybox.css">
         <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
         <link rel="stylesheet" href="css/main.css">        
         <link rel="stylesheet" href="css/responsive.css">        
-        
+
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -32,16 +31,17 @@ and open the template in the editor.
         <script src="js/vendor/js/jquery.fancybox.js"></script>
         <script src="js/vendor/js/moment.js"></script>                
         
-<!--        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
+
 
         <!-- template main js -->
         <script src="js/vendor/js/main.js"></script>
 
+        <link rel='shortcut icon' href='images/favicon.ico' type='image/x-icon'>
         <title>Provider List</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    
+
     <body>
         <!--
         ==================================================
@@ -92,46 +92,48 @@ and open the template in the editor.
             </div>
         </header>
 
-    <main ng-view></main>
+        <main ng-view></main>
 
-    <!--
-    ==================================================
-    Footer Section Start
-    ================================================== -->
-    <footer id="footer">
-        <div class="container">
-            <div class="col-md-8">
-                <p class="copyright">Copyright: <span>2016</span> | DST Systems <a href="javascript:void(0);"></a></p>
+        
+        <!--
+        ==================================================
+        Footer Section Start
+        ================================================== -->
+        <footer class="footer navbar-fixed-bottom">
+            <div class="container">
+                <div style="text-align: center;">
+                    <p class="copyright">ProviderList App | Copyright <span>@ 2016</span> | DST Systems <a href="javascript:void(0);"></a></p>
+                </div>
             </div>
-        </div>
-    </footer> <!-- /#footer -->
+        </footer> <!-- /#footer -->
 
 
-    <script type="text/javascript">
-        setTimeout(function () {
-            $('.flash-message').fadeOut('fast');
-        }, 1000); // <-- time in milliseconds
-    </script>
+        <script type="text/javascript">
+            setTimeout(function () {
+                $('.flash-message').fadeOut('fast');
+            }, 1000); // <-- time in milliseconds
+        </script>
 
-    <script src="js/vendor/angular/angular.js"></script>    
-    <script src="js/vendor/angular/angular-route.js"></script>    
-    <script src="js/app.js"></script>    
-    <script src="js/controllers/ImportController.js"></script>            
-    <script src="js/controllers/ManageController.js"></script>
-    <script src="js/controllers/HomeController.js"></script>
-    <script src="js/controllers/ProviderController.js"></script>
-    <script src="js/controllers/FlashController.js"></script>
-    <script src="js/directives/fileModel.js"></script>
-    <script src="js/directives/modal.js"></script>
-    <script src="js/directives/pageSelect.directive.js"></script>        
-    <script src="js/services/multipartForm.js"></script>        
-    <script src="js/services/flashService.js"></script>
-    <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/module/smart-table.debug.js"></script>
-    <script src="js/directives/csSelect.js"></script>
-    <script src="js/directives/csSelectAll.js"></script>
-    <script src="js/vendor/angular-smart-table/dist/smart-table.min.js"></script>
-    <script src="js/vendor/js-xlsx/dist/xlsx.core.min.js"></script>
-    <script src="js/vendor/js/bootstrap-datetimepicker.js"></script>
-</body>
+        <script src="js/vendor/js/jquery-ui.min.js"></script>
+        <script src="js/vendor/angular/angular.js"></script>    
+        <script src="js/vendor/angular/angular-route.js"></script>    
+        <script src="js/app.js"></script>            
+        <script src="js/controllers/ImportController.js"></script>            
+        <script src="js/controllers/ManageController.js"></script>
+        <script src="js/controllers/HomeController.js"></script>
+        <script src="js/controllers/ProviderController.js"></script>
+        <script src="js/directives/fileModel.js"></script>
+        <script src="js/directives/modal.js"></script>
+        <script src="js/directives/pageSelect.directive.js"></script>        
+        <script src="js/directives/datepicker.js"></script>        
+        <script src="js/services/multipartForm.js"></script>        
+        <script src="js/services/flashService.js"></script>
+        <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
+        <script src="js/module/smart-table.debug.js"></script>
+        <script src="js/directives/csSelect.js"></script>
+        <script src="js/directives/csSelectAll.js"></script>
+        <script src="js/vendor/angular-smart-table/dist/smart-table.min.js"></script>
+        <script src="js/vendor/js-xlsx/dist/xlsx.core.min.js"></script>
+        <script src="js/vendor/js/bootstrap-datetimepicker.js"></script>
+    </body>
 </html>

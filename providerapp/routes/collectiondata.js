@@ -29,37 +29,12 @@ app.use(json2xls.middleware);
 router.route('/:id/collectionName/:collectionName')
         .get(function (req, res) {
 
-
             var id = req.params.id;
             db.collection(req.params.collectionName).findOne({
                 _id: mongojs.ObjectId(id)
             }, function (err, doc) {
-
-//                console.log(doc);
-//
-//                var html = "<div>";
-//
-//                for (var key in doc) {
-//                    console.log("Key:" + key);
-//                    console.log("Value:" + doc[key]);
-//
-//                    var newkey = key.split("|");
-//
-//                    if (newkey[1] === "string") {
-//                        html += "<input type='text' ng-model='providerModelData." + newkey[0] + "' class='form-control'><br>";
-//                    } else if (newkey[1] === "number") {
-//                        html += "<input type='number' ng-model='providerModelData." + newkey[0] + "' class='form-control'><br>";
-//                    } else if (newkey[1] === "text") {
-//                        html += "<textarea ng-model='providerModelData." + newkey[0] + "' class='form-control'></textarea><br>";
-//                    }
-//                }
-//
-//                html += "</div>";
-//                console.log(html);
-
                 res.json(doc);
             });
-
 
         });
 

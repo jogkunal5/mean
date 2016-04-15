@@ -1,13 +1,11 @@
 angular.module('IdeaCorner')
         .controller('ManageController', function ($http, $scope, $rootScope, $window) {
 
-            $scope.displayedCollection = [];
+            $scope.showModal = false;
 
             var list = function () {
-                $http.get('/ideacorner').success(function (response) {
-                    console.log("I got the data that I requested");
-                    $scope.rowCollection = response; // This will put data into our html file
-                    $scope.contact = "";
+                $http.get('/ideacorner').success(function (response) {                    
+                        $scope.rowCollection = response; // This will put data into our html file                                                                
                 });
             };
 
@@ -20,7 +18,6 @@ angular.module('IdeaCorner')
                 });
             };
 
-            $scope.showModal = false;
             $scope.toggleModal = function (id) {
                 $http.get('/ideacorner/' + id).success(function (response) {
                     $scope.ideacorner = response;
@@ -68,16 +65,4 @@ angular.module('IdeaCorner')
                 });
             };
 
-
-        }).filter('unique', function () {
-    return function (arr, field) {
-        var o = {}, i, l = arr.length, r = [];
-        for (i = 0; i < l; i += 1) {
-            o[arr[i][field]] = arr[i];
-        }
-        for (i in o) {
-            r.push(o[i]);
-        }
-        return r;
-    };
-});
+        });
